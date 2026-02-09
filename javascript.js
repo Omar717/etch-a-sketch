@@ -21,7 +21,7 @@ function grid (container) {
         square.addEventListener("mouseenter", () => 
             square.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16)));
 
-    Sizing = String((Math.sqrt((464*464)/(16*16))-2)+ "px");
+    Sizing = String((Math.sqrt((600*600)/(16*16))-2)+ "px");
     allSquares.forEach((square) => square.style.height = Sizing);
     allSquares.forEach((square) => square.style.width = Sizing);
 
@@ -63,7 +63,7 @@ function changeGrid (size) {
         square.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16)));
     
     if (numSize <= 100 && numSize > 0) {    
-        Sizing = String((Math.sqrt((464*464)/(numSize*numSize))-2)+ "px");
+        Sizing = String((Math.sqrt((600*600)/(numSize*numSize))-2)+ "px");
         allSquares.forEach((square) => square.style.height = Sizing);
         allSquares.forEach((square) => square.style.width = Sizing);
     }
