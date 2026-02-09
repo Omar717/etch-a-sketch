@@ -16,7 +16,7 @@ function grid (container) {
     }
 
     const allSquares = document.querySelectorAll(".squares");
-    
+
     allSquares.forEach((square) => 
         square.addEventListener("mouseenter", () => 
             square.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16)));
@@ -24,7 +24,15 @@ function grid (container) {
     Sizing = String((Math.sqrt((464*464)/(16*16))-2)+ "px");
     allSquares.forEach((square) => square.style.height = Sizing);
     allSquares.forEach((square) => square.style.width = Sizing);
-    
+
+    allSquares.forEach((square) => square.style.opacity = 0.1);
+
+    allSquares.forEach((square) => 
+        square.addEventListener("mouseenter", function () { 
+            let currentOpacity = parseFloat(square.style.opacity);
+            let newOpacity = currentOpacity + 0.1;
+            square.style.opacity = newOpacity;
+        }));
 }
 
 function changeGrid (size) {
@@ -59,6 +67,15 @@ function changeGrid (size) {
         allSquares.forEach((square) => square.style.height = Sizing);
         allSquares.forEach((square) => square.style.width = Sizing);
     }
+
+    allSquares.forEach((square) => square.style.opacity = 0.1);
+
+    allSquares.forEach((square) => 
+        square.addEventListener("mouseenter", function () { 
+            let currentOpacity = parseFloat(square.style.opacity);
+            let newOpacity = currentOpacity + 0.1;
+            square.style.opacity = newOpacity;
+        }));
 }
 
 
