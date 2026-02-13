@@ -1,12 +1,6 @@
-const container = document.querySelector("#container");
-const button = document.querySelector("#button");
-
-const gridBtn = document.createElement("button");
-gridBtn.textContent = "Change grid size!"
-gridBtn.classList.toggle("gridBtn");
-button.appendChild(gridBtn);
-
-function grid (container) {
+// Etch-A-Sketch Interactive Web Page
+function makeGrid () {
+    const container = document.querySelector("#container");
     for (i = 0; i < 16; i++) {
         for (j = 0; j < 16; j++) {
             const squares = document.createElement("div");
@@ -14,17 +8,26 @@ function grid (container) {
             container.appendChild(squares);
         }
     }
+}    
 
-    const allSquares = document.querySelectorAll(".squares");
+function makeButton(makeGrid) {
+    const button = document.querySelector("#button");
 
+    const gridBtn = document.createElement("button");
+    gridBtn.textContent = "Change grid size!"
+    gridBtn.classList.toggle("gridBtn");
+    button.appendChild(gridBtn);
+
+    gridBtn.addEventListener("click", () => changeGrid(prompt("Enter a number between 1 and 100"), makeGrid));
+} 
+
+function randomColor(allSquares) {
     allSquares.forEach((square) => 
         square.addEventListener("mouseenter", () => 
             square.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16)));
+}
 
-    Sizing = String((Math.sqrt((600*600)/(16*16))-2)+ "px");
-    allSquares.forEach((square) => square.style.height = Sizing);
-    allSquares.forEach((square) => square.style.width = Sizing);
-
+function varyOpacity(allSquares) {
     allSquares.forEach((square) => square.style.opacity = 0.1);
 
     allSquares.forEach((square) => 
@@ -35,7 +38,24 @@ function grid (container) {
         }));
 }
 
-function changeGrid (size) {
+function grid (makeGrid) {
+
+    makeGrid();
+
+    const allSquares = document.querySelectorAll(".squares");
+
+    randomColor(allSquares);
+
+    Sizing = String((Math.sqrt((600*600)/(16*16))-2)+ "px");
+    allSquares.forEach((square) => square.style.height = Sizing);
+    allSquares.forEach((square) => square.style.width = Sizing);
+
+    varyOpacity(allSquares);
+}
+
+function changeGrid (size, makeGrid) {
+
+    makeGrid();
 
     numSize = Number(size);
     
@@ -58,9 +78,7 @@ function changeGrid (size) {
 
     const allSquares = document.querySelectorAll(".squares");
 
-    allSquares.forEach((square) => 
-    square.addEventListener("mouseenter", () => 
-        square.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16)));
+    randomColor(allSquares)
     
     if (numSize <= 100 && numSize > 0) {    
         Sizing = String((Math.sqrt((600*600)/(numSize*numSize))-2)+ "px");
@@ -68,17 +86,8 @@ function changeGrid (size) {
         allSquares.forEach((square) => square.style.width = Sizing);
     }
 
-    allSquares.forEach((square) => square.style.opacity = 0.1);
-
-    allSquares.forEach((square) => 
-        square.addEventListener("mouseenter", function () { 
-            let currentOpacity = parseFloat(square.style.opacity);
-            let newOpacity = currentOpacity + 0.1;
-            square.style.opacity = newOpacity;
-        }));
+    varyOpacity(allSquares);
 }
 
-
-gridBtn.addEventListener("click", () => changeGrid(prompt("Enter a number between 1 and 100")))
-
-grid(container);
+makeButton(makeGrid);
+grid(makeGrid);
