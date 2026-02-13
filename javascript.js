@@ -10,7 +10,7 @@ function makeGrid () {
     }
 }    
 
-function makeButton(makeGrid) {
+function makeButton() {
     const button = document.querySelector("#button");
 
     const gridBtn = document.createElement("button");
@@ -18,7 +18,7 @@ function makeButton(makeGrid) {
     gridBtn.classList.toggle("gridBtn");
     button.appendChild(gridBtn);
 
-    gridBtn.addEventListener("click", () => changeGrid(prompt("Enter a number between 1 and 100"), makeGrid));
+    gridBtn.addEventListener("click", () => changeGrid(prompt("Enter a number between 1 and 100")));
 } 
 
 function randomColor(allSquares) {
@@ -38,7 +38,7 @@ function varyOpacity(allSquares) {
         }));
 }
 
-function grid (makeGrid) {
+function grid () {
 
     makeGrid();
 
@@ -53,7 +53,7 @@ function grid (makeGrid) {
     varyOpacity(allSquares);
 }
 
-function changeGrid (size, makeGrid) {
+function changeGrid (size) {
 
     makeGrid();
 
@@ -73,7 +73,7 @@ function changeGrid (size, makeGrid) {
     }
     else {
         alert("Error: enter a number between 1 and 100");
-        grid(container);
+        changeGrid(16) 
     }
 
     const allSquares = document.querySelectorAll(".squares");
@@ -89,5 +89,5 @@ function changeGrid (size, makeGrid) {
     varyOpacity(allSquares);
 }
 
-makeButton(makeGrid);
-grid(makeGrid);
+makeButton();
+grid();
