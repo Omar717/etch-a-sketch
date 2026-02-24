@@ -4,17 +4,17 @@ function makeGrid () {
     for (i = 0; i < 16; i++) {
         for (j = 0; j < 16; j++) {
             const squares = document.createElement("div");
-            squares.classList.toggle("squares")
+            squares.classList.toggle("squares");
             container.appendChild(squares);
         }
     }
 }    
 
-function makeButton() {
+function makeButton () {
     const button = document.querySelector("#button");
 
     const gridBtn = document.createElement("button");
-    gridBtn.textContent = "Change grid size!"
+    gridBtn.textContent = "Change grid size!";
     gridBtn.classList.toggle("gridBtn");
     button.appendChild(gridBtn);
 
@@ -58,11 +58,10 @@ function changeGrid (size) {
     makeGrid();
 
     numSize = Number(size);
-    
-    const severalSquares = document.querySelectorAll(".squares");
-    severalSquares.forEach((square) => container.removeChild(square));
 
     if (numSize <= 100 && numSize > 0) {
+        const severalSquares = document.querySelectorAll(".squares");
+        severalSquares.forEach((square) => container.removeChild(square));
         for (i = 0; i < numSize; i++) {
             for (j = 0; j < numSize; j++) {
                 const squares = document.createElement("div");
@@ -70,15 +69,14 @@ function changeGrid (size) {
                 container.appendChild(squares);
             }
         }  
-    }
-    else {
+    } else {
         alert("Error: enter a number between 1 and 100");
-        changeGrid(16) 
+        return;
     }
 
     const allSquares = document.querySelectorAll(".squares");
 
-    randomColor(allSquares)
+    randomColor(allSquares);
     
     if (numSize <= 100 && numSize > 0) {    
         Sizing = String((Math.sqrt((600*600)/(numSize*numSize))-2)+ "px");
